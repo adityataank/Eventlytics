@@ -5,11 +5,16 @@ import { EventType } from "../types/event";
 export const createEvent = async (payload: EventType, projectId: string) => {
   const { name, location, properties } = payload ?? {};
 
-  await db.event.create({ data: { name, properties, location, projectId } });
+  await db.event.create({
+    data: { name: name.trim().replace(/\s+/g, "-"), properties, location, projectId },
+  });
 };
 
 export const fetchEvents = async (projectId: string) => {
-  const events = await db.event.findMany({ where: { projectId } });
+  const events = await db.event.findMany({
+    where: { projectId },
+    orderBy: { timestamp: "desc" },
+  });
   return events;
 };
 
@@ -21,6 +26,7 @@ export const groupEventsByKey = async (
     by: eventName as Prisma.EventScalarFieldEnum,
     where: { projectId },
     _count: { [eventName]: true },
+    orderBy: { _count: { [eventName]: "desc" } },
   });
 
   return groupedEvents;
@@ -32,6 +38,7 @@ export const filterEventsByEventName = async (
 ) => {
   const filteredEvents = db.event.findMany({
     where: { projectId, name: eventName },
+    orderBy: { timestamp: "desc" },
   });
 
   return filteredEvents;

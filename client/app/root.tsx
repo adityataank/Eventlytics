@@ -23,6 +23,17 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export function meta() {
+  return [
+    { title: "Eventlytics" },
+    {
+      name: "description",
+      content: "This app will track the events of the projects",
+    },
+  ];
+}
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">

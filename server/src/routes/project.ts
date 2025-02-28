@@ -1,9 +1,11 @@
 import express from "express";
 
-import { getProjects, newProject } from "../controllers/project";
+import { firstProject, getProjects, newProject } from "../controllers/project";
 
 export const projectRouter = express.Router();
 
 projectRouter.post("/", newProject);
 
 projectRouter.get("/", getProjects);
+
+projectRouter.get("/first", firstProject);

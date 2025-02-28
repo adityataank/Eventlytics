@@ -17,3 +17,8 @@ export const createProject = async (payload: ProjectType, userId: string) => {
     return [null, error?.code];
   }
 };
+
+export const fetchFirstProject = async (userId: string) => {
+  const project = await db.project.findFirst({ where: { ownerId: userId } });
+  return project;
+};

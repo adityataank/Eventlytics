@@ -4,7 +4,7 @@ import { asyncHandler } from "../utils/helpers";
 import { invalidRequest, successResponse } from "../utils/write-json";
 import { validateNewProjectPayload } from "../utils/validator";
 
-import { createProject, fetchProjects } from "../services/project";
+import { createProject, fetchFirstProject, fetchProjects } from "../services/project";
 import { MONGO_ERROR_CODES } from "../utils/constant";
 
 export const getProjects = asyncHandler(async (req: Request, res: Response) => {
@@ -31,5 +31,18 @@ export const newProject = asyncHandler(async (req: Request, res: Response) => {
   successResponse(res, {
     message: "New project created successfully",
     project_key: id,
-  });
+  },201);
 });
+
+export const firstProject = asyncHandler(
+  async (req: Request, res: Response) => {
+    const userId = req.headers.userId as string;
+
+    const project = await fetchFirstProject(userId);
+
+    successResponse(res, {
+      project,
+      message: "Projects fetched successfully",
+    });
+  }
+);

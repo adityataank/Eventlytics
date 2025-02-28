@@ -23,7 +23,7 @@ export const newEvent = asyncHandler(async (req: Request, res: Response) => {
 
   await createEvent(payload, projectId);
 
-  successResponse(res, { message: "Event created successfully" });
+  successResponse(res, { message: "Event created successfully" },201);
 });
 
 export const getEvents = asyncHandler(async (req: Request, res: Response) => {
