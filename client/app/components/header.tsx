@@ -15,7 +15,7 @@ function Header({ projects = [] }: HeaderProps) {
     navigate(`/project/${projectId}`);
 
   return (
-    <header className="fixed top-0 h-44 w-full flex flex-col gap-6 items-center justify-center px-6 bg-white shadow-md rounded-b-xl  animate-in slide-in-from-top-[200%] duration-700">
+    <header className="fixed top-0 h-44 w-full flex flex-col gap-6 items-center justify-center px-6 bg-white shadow-md rounded-b-xl animate-in slide-in-from-top-[200%] duration-700 md:flex-row md:h-24 md:rounded-b-none md:justify-between md:px-12">
       <Logo />
       <Dropdown
         options={parsedOptions}

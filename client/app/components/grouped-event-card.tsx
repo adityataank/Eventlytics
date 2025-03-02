@@ -3,7 +3,7 @@ import { cn } from "~/lib/utils";
 
 function GroupedEventCard({ children, className }: ReactChildren) {
   return (
-    <div className={cn("py-4 flex flex-col gap-2 border", className)}>
+    <div className={cn("py-4 flex flex-col gap-2 border md:border-0 md:py-0 md:gap-4", className)}>
       {children}
     </div>
   );
@@ -11,7 +11,7 @@ function GroupedEventCard({ children, className }: ReactChildren) {
 
 const Title = ({ children, className }: ReactChildren) => {
   return (
-    <h5 className={cn("text-sm font-semibold text-gray-700 pl-4", className)}>
+    <h5 className={cn("text-sm font-semibold text-gray-700 pl-4 md:hidden", className)}>
       {children}
     </h5>
   );

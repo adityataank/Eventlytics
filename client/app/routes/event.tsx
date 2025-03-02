@@ -14,17 +14,17 @@ export async function loader({ params }: Route.LoaderArgs) {
     API_ROUTES.get_specific_events(projectId, eventName)
   );
 
-  return { events: data?.events ?? [] };
+  return { events: data?.events ?? [], projectId };
 }
 
 export default function Event({
-  loaderData: { events = [] },
+  loaderData: { events = [], projectId },
 }: Route.ComponentProps) {
   return (
-    <section className="h-[calc(100dvh-176px)] p-4 flex flex-col gap-4 animate-in slide-in-from-bottom-full duration-500">
+    <section className="h-[calc(100dvh-176px)] p-4 flex flex-col gap-4 animate-in slide-in-from-bottom-full duration-500 md:p-8 xl:max-w-7xl xl:mx-auto md:h-[calc(100dvh-96px)]">
       <Container>
         <Container.Title>
-          <Back />
+          <Back projectId={projectId} />
         </Container.Title>
         <Container.Content className="overflow-y-auto">
           {Children.toArray(

@@ -21,6 +21,7 @@ export type DropdownProps = {
   onSelect: (option: string) => void;
   placeholder?: string;
   defaultValue?: string;
+  className?: string;
 };
 
 export type EventProps = {

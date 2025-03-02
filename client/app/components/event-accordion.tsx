@@ -19,7 +19,7 @@ function EventAccordion(props: EventProps) {
         <AccordionTrigger>
           <span className="grid grid-cols-[70%_auto] w-full">
             <p className="truncate">{name}</p>
-            <p className="flex items-center justify-end font-normal text-xs text-neutral-500 whitespace-nowrap">
+            <p className="flex items-center justify-end font-normal text-xs text-neutral-500 whitespace-nowrap md:text-sm">
               {eventTime}
             </p>
           </span>
@@ -27,10 +27,7 @@ function EventAccordion(props: EventProps) {
         <AccordionContent className="grid grid-cols-1 gap-2 pt-0">
           {Children.toArray(
             Object.entries(eventBody).map(([key, value], index) => (
-              <p
-                key={index}
-                className="text-xs grid grid-cols-[100px_1fr] gap-2"
-              >
+              <p key={index} className="grid grid-cols-[100px_1fr] gap-2">
                 <span className="text-neutral-700 font-medium">{key}</span>
                 <span>{value}</span>
               </p>

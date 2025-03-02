@@ -29,7 +29,7 @@ export default function Project({
   loaderData: { events, eventsByName, eventsByLocation },
 }: Route.ComponentProps) {
   return (
-    <section className="h-[calc(100dvh-176px)] p-4 flex flex-col grow-0 gap-4">
+    <section className="h-[calc(100dvh-176px)] p-4 flex flex-col gap-4 md:h-[calc(100dvh-96px)] md:p-8 md:flex-row xl:max-w-7xl xl:mx-auto">
       {events && <Events events={events} />}
       {eventsByName && (
         <GroupedEvents
