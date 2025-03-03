@@ -1,6 +1,6 @@
-export const API_KEY = process.env.API_KEY;
+export const API_KEY = import.meta.env.VITE_API_KEY;
 
-export const TOKEN = process.env.USER_TOKEN;
+export const TOKEN = import.meta.env.VITE_USER_TOKEN;
 
 export const API_ROOT_URL =
   "https://eventlytics.vercel.app/api/v1";
