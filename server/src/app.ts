@@ -10,13 +10,11 @@ import { v1 } from "./routes/sub-router/v1";
 import { errorMiddleware, logger } from "./middlewares/logger";
 import { authApiRequest } from "./middlewares/auth";
 
-import { CORS_CONFIG } from "./utils/constant";
-
 export const db = new PrismaClient();
 
 const app = express();
 
-app.use(cors(CORS_CONFIG));
+app.use(cors());
 
 app.use(express.json());
 
