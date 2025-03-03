@@ -49,6 +49,11 @@ export const timeAgo = (timestamp: Date): string => {
 export const parseEventContent = (
   event: EventProps
 ): { [key: string]: any } => {
-  const { location, properties, timestamp } = event;
-  return { location, timestamp: formatTimestamp(timestamp), ...properties };
+  const { location, properties, timestamp, sessionId } = event;
+  return {
+    location,
+    timestamp: formatTimestamp(timestamp),
+    session_id: sessionId,
+    ...properties,
+  };
 };

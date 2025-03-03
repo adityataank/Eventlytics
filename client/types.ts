@@ -30,6 +30,7 @@ export type EventProps = {
   properties: { [key: string]: string };
   timestamp: Date;
   location: string;
+  sessionId?: string;
 };
 
 export type EventComponentProps = {

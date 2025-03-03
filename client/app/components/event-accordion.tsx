@@ -24,14 +24,16 @@ function EventAccordion(props: EventProps) {
             </p>
           </span>
         </AccordionTrigger>
-        <AccordionContent className="grid grid-cols-1 gap-2 pt-0">
+        <AccordionContent className="grid grid-cols-1 gap-2 pt-0 xl:grid-cols-2">
           {Children.toArray(
-            Object.entries(eventBody).map(([key, value], index) => (
-              <p key={index} className="grid grid-cols-[100px_1fr] gap-2">
-                <span className="text-neutral-700 font-medium">{key}</span>
-                <span>{value}</span>
-              </p>
-            ))
+            Object.entries(eventBody).map(([key, value], index) =>
+              value ? (
+                <p key={index} className="grid grid-cols-[100px_1fr] gap-2">
+                  <span className="text-neutral-700 font-medium">{key}</span>
+                  <span>{value}</span>
+                </p>
+              ) : null
+            )
           )}
         </AccordionContent>
       </AccordionItem>
