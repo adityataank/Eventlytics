@@ -5,19 +5,11 @@
             "destination": "/"
         }
     ],
-    "experimental": {
-        "serverComponentsExternalPackages": [
-            "lucide-react"
-        ]
-    },
     "functions": {
         "api/**": {
             "maxDuration": 10,
             "memory": 256
         }
     },
-    "includeFiles": [
-        "public/**",
-        "build/**"
-    ]
+    "includeFiles": ["public/**", "build/**"]
 }
