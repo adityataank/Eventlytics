@@ -1,5 +1,8 @@
 import express from "express";
+import cors from "cors";
+
 import "dotenv/config";
+
 import { PrismaClient } from "@prisma/client";
 
 import { v1 } from "./routes/sub-router/v1";
@@ -10,6 +13,8 @@ import { authApiRequest } from "./middlewares/auth";
 export const db = new PrismaClient();
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

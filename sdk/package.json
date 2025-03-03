@@ -1,6 +1,6 @@
 {
   "name": "eventlytics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Package for handling event tracking",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
