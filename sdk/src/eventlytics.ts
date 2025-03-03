@@ -1,12 +1,15 @@
+import { API_URL } from "./constant";
 import { getDeviceInfo, setLocationString } from "./utils";
 
 class Eventlytics {
   private projectToken: string;
+  private apiKey: string;
   private location: Record<string, any> | null = null;
   private locationReady: Promise<void>; // Promise to track readiness
 
-  constructor(projectToken: string) {
+  constructor(projectToken: string, apiKey: string) {
     this.projectToken = projectToken;
+    this.apiKey = apiKey;
     this.locationReady = this.initialize();
   }
 
@@ -38,14 +41,13 @@ class Eventlytics {
         commonProps["pathname"] = window.location.pathname;
         commonProps["href"] = window.location.href;
       }
-      console.log("eventlytics version 2", {
-        eventName,
-        location,
-        props: {
-          ...commonProps,
-          ...properties,
+
+      fetch(`${API_URL}/${this.projectToken}`, {
+        method: "POST",
+        headers: {
+          "Api-Key": this.apiKey,
         },
-        token: this.projectToken,
+        body: JSON.stringify({})
       });
     } catch (error) {
       console.log("eventlytics: tracking error - ", error);

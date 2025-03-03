@@ -1,0 +1,1 @@
+export const API_URL = 'https://eventlytics.onrender.com/api/v1/event'
