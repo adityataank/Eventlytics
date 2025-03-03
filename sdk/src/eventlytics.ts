@@ -1,15 +1,17 @@
-import { API_URL } from "./constant";
+import { API_URL } from "./constants";
 import { getDeviceInfo, getLocationString } from "./utils";
 
 class Eventlytics {
   private projectToken: string;
   private apiKey: string;
+  private userToken: string;
   private location: Record<string, any> | null = null;
   private locationReady: Promise<void>; // Promise to track readiness
 
-  constructor(projectToken: string, apiKey: string) {
+  constructor(projectToken: string, apiKey: string, userToken: string) {
     this.projectToken = projectToken;
     this.apiKey = apiKey;
+    this.userToken = userToken;
     this.locationReady = this.initialize();
   }
 
@@ -55,6 +57,8 @@ class Eventlytics {
         method: "POST",
         headers: {
           "Api-Key": this.apiKey,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.userToken}`,
         },
         body: JSON.stringify(payload),
       });
