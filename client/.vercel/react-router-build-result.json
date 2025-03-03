@@ -1,0 +1,106 @@
+{
+  "buildManifest": {
+    "serverBundles": {
+      "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0": {
+        "id": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+        "file": "build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
+        "config": {
+          "runtime": "nodejs"
+        }
+      }
+    },
+    "routeIdToServerBundleId": {
+      "routes/entry": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/dashboard": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/project": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/event": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0"
+    },
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "app/root.tsx",
+        "config": {}
+      },
+      "routes/entry": {
+        "id": "routes/entry",
+        "parentId": "root",
+        "file": "app/routes/entry.tsx",
+        "index": true,
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/dashboard": {
+        "id": "routes/dashboard",
+        "parentId": "root",
+        "file": "app/routes/dashboard.tsx",
+        "path": "/project",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/project": {
+        "id": "routes/project",
+        "parentId": "routes/dashboard",
+        "file": "app/routes/project.tsx",
+        "path": ":projectId",
+        "config": {}
+      },
+      "routes/event": {
+        "id": "routes/event",
+        "parentId": "routes/dashboard",
+        "file": "app/routes/event.tsx",
+        "path": ":projectId/:eventName",
+        "config": {}
+      }
+    }
+  },
+  "reactRouterConfig": {
+    "appDirectory": "/home/dell/projects/eventlytics/client/app",
+    "basename": "/",
+    "buildDirectory": "/home/dell/projects/eventlytics/client/build",
+    "future": {
+      "unstable_optimizeDeps": false
+    },
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "root.tsx"
+      },
+      "routes/entry": {
+        "id": "routes/entry",
+        "parentId": "root",
+        "file": "routes/entry.tsx",
+        "index": true
+      },
+      "routes/dashboard": {
+        "id": "routes/dashboard",
+        "parentId": "root",
+        "file": "routes/dashboard.tsx",
+        "path": "/project"
+      },
+      "routes/project": {
+        "id": "routes/project",
+        "parentId": "routes/dashboard",
+        "file": "routes/project.tsx",
+        "path": ":projectId"
+      },
+      "routes/event": {
+        "id": "routes/event",
+        "parentId": "routes/dashboard",
+        "file": "routes/event.tsx",
+        "path": ":projectId/:eventName"
+      }
+    },
+    "serverBuildFile": "index.js",
+    "serverModuleFormat": "esm",
+    "ssr": true
+  },
+  "viteConfig": {
+    "build": {
+      "assetsDir": "assets"
+    }
+  }
+}

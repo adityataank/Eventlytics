@@ -1,4 +1,4 @@
-import { ArrowLeft } from "lucide-react";
+import ArrowLeft from "./svg/ArrowLeft";
 
 const BackArrowIcon = ({ onClick = () => {} }) => {
   return (
