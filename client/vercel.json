@@ -1,15 +1,5 @@
 {
     "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
-    ],
-    "functions": {
-        "api/**": {
-            "maxDuration": 10,
-            "memory": 256
-        }
-    },
-    "includeFiles": ["public/**", "build/**"]
-}
+      { "source": "/(.*)", "destination": "/" }
+    ]
+  }
