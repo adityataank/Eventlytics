@@ -31,7 +31,7 @@ export const authenticateToken = (
     return invalidRequest(res, "Token verification failed", 400);
   }
 
-  console.log(`Logged in user: ${userId}\n`);
+  // console.log(`Logged in user: ${userId}\n`);
   req["headers"]["userId"] = userId as string;
   next();
 };

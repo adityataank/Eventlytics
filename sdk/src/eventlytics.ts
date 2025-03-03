@@ -6,16 +6,38 @@ class Eventlytics {
   private apiKey: string;
   private userToken: string;
   private location: Record<string, any> | null = null;
+  private utm_source: string | null = null;
+  private session_id: string;
   private locationReady: Promise<void>; // Promise to track readiness
 
   constructor(projectToken: string, apiKey: string, userToken: string) {
     this.projectToken = projectToken;
     this.apiKey = apiKey;
     this.userToken = userToken;
-    this.locationReady = this.initialize();
+    this.session_id = this.setSessionId();
+    this.utm_source = this.getUtmSource();
+    this.locationReady = this.getClientLocation();
   }
 
-  private async initialize() {
+  private setSessionId() {
+    const sessionId = crypto.randomUUID();
+    return sessionId;
+  }
+
+  private getUtmSource() {
+    if (typeof window !== "undefined") {
+      let utm_source = sessionStorage.getItem("utm_source");
+      if (!utm_source) {
+        const params = new URLSearchParams(window.location.search);
+        utm_source = params.get("utm_source");
+        return utm_source;
+      }
+      return utm_source;
+    }
+    return null;
+  }
+
+  private async getClientLocation() {
     try {
       const response = await fetch("https://speed.cloudflare.com/meta");
       this.location = await response.json();
@@ -42,11 +64,14 @@ class Eventlytics {
       if (typeof window !== "undefined") {
         commonProps["pathname"] = window.location.pathname;
         commonProps["href"] = window.location.href;
+        commonProps["referrer"] = document.referrer;
+        commonProps["utm_source"] = this.utm_source;
       }
 
       const payload = {
         name: eventName,
         location: location,
+        session_id: this.session_id,
         properties: {
           ...commonProps,
           ...properties,

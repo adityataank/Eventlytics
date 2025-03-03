@@ -3,10 +3,16 @@ import { db } from "../app";
 import { EventType } from "../types/event";
 
 export const createEvent = async (payload: EventType, projectId: string) => {
-  const { name, location, properties } = payload ?? {};
+  const { name, location, properties, session_id } = payload ?? {};
 
   await db.event.create({
-    data: { name: name.trim().replace(/\s+/g, "-"), properties, location, projectId },
+    data: {
+      name: name.trim().replace(/\s+/g, "-"),
+      sessionId: session_id,
+      properties,
+      location,
+      projectId,
+    },
   });
 };
 

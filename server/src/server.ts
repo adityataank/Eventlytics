@@ -7,7 +7,7 @@
 //   console.log(`\n🎉 Server started on PORT: ${appConfig.PORT} 🎉\n`)
 // );
 
-
+// for vercel deployment
 import app from "./app";
 
 export default app;

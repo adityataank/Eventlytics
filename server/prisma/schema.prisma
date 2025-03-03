@@ -33,4 +33,5 @@ model Event {
   location   String
   project    Project  @relation(fields: [projectId], references: [id])
   projectId  String   @db.ObjectId
+  sessionId  String?   @default("") @map("session_id")
 }
