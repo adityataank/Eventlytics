@@ -22,7 +22,7 @@ export default function Dashbaord({
   loaderData: { projects },
 }: Route.ComponentProps) {
   return (
-    <main className="pt-44 md:pt-24">
+    <main className="pt-44 md:pt-24 overflow-x-hidden">
       <Header projects={projects} />
       <Outlet />
     </main>
