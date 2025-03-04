@@ -52,7 +52,7 @@ class Eventlytics {
     try {
       await this.locationReady;
 
-      if (!this.projectToken || !this.apiKey) return;
+      if (!this.projectToken || !this.apiKey || !eventName) return;
 
       const { browser_name, device_type, os } = getDeviceInfo();
       const location = getLocationString(this.location);
