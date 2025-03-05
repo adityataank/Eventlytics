@@ -1,5 +1,4 @@
 import { Outlet } from "react-router";
-import type { ShouldRevalidateFunctionArgs } from "react-router";
 
 import Header from "~/components/header";
 

@@ -1,12 +1,16 @@
-import type { EventProps } from "types";
+import { Children } from "react";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
+
 import { parseEventContent, timeAgo } from "~/lib/utils";
-import { Children } from "react";
+import { KEYS_TO_HIDE } from "~/lib/constants";
+
+import type { EventProps } from "types";
 
 function EventAccordion(props: EventProps) {
   const { id, name, timestamp } = props;
@@ -27,10 +31,12 @@ function EventAccordion(props: EventProps) {
         <AccordionContent className="grid grid-cols-1 gap-2 pt-0 xl:grid-cols-2">
           {Children.toArray(
             Object.entries(eventBody).map(([key, value], index) =>
-              value ? (
+              value && !KEYS_TO_HIDE.includes(key) ? (
                 <p key={index} className="grid grid-cols-[100px_1fr] gap-2">
                   <span className="text-neutral-700 font-medium">{key}</span>
-                  <span>{value}</span>
+                  <span className="truncate" title={value}>
+                    {value}
+                  </span>
                 </p>
               ) : null
             )

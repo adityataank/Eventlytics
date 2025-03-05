@@ -1,5 +1,7 @@
 import { Link, useParams } from "react-router";
 
+import { Analytics } from "~/lib/analytics";
+
 import ArrowIcon from "./ui/icons/arrow";
 
 const GroupedEvent = ({
@@ -14,6 +16,13 @@ const GroupedEvent = ({
   const [firstText] = name.split(",");
 
   const { projectId } = useParams();
+
+  const handleLinkClick = () => {
+    Analytics.track("event-name-click", {
+      project_id: projectId,
+      event_name: name,
+    });
+  };
 
   const Body = () => (
     <>
@@ -30,8 +39,9 @@ const GroupedEvent = ({
   return isLink ? (
     <Link
       to={`/project/${projectId}/${name}`}
-      viewTransition
+      onClick={handleLinkClick}
       className="flex items-center text-sm px-4 py-1 justify-between group md:px-0 md:text-[16px]"
+      viewTransition
     >
       <Body />
     </Link>
